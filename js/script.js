@@ -1,14 +1,33 @@
-// funzione che genera la partita
-function playGame(choice, option1, option2, option3) {
-    let ciro;
+// funzione che genera uno switch tra varie opzioni
+function activeChoice(choice, option1, option2, option3) {
+    const main = document.querySelector("main");
+    const gameTable = document.createElement("div");
+    gameTable.classList.add("game-table");
     if(choice.value == option1.value){
-        innerHTML = "";
+        main.innerHTML = "";
+        getactivableDivOnDOM(100, gameTable, "square-100", "active");
     } else if(choice.value == option2.value){
-        innerHTML = "";
+        main.innerHTML = "";
+        getactivableDivOnDOM(81, gameTable, "square-81", "active");
     } else if(choice.value == option3.value){
-        innerHTML = "";
+        main.innerHTML = "";
+        getactivableDivOnDOM(49, gameTable, "square-49", "active");
     }
-    return console.log(ciro);
+    main.append(gameTable);
+}
+// funzione che genera una griglia con elementi cliccabili
+function getactivableDivOnDOM(numberOfDiv, positionOnDOM, divClass, divActiveClass) {
+    for(let i = 0; i < numberOfDiv; i++) {
+        const div = document.createElement("div");
+        div.classList.add(divClass);
+        div.append(i + 1);
+        div.addEventListener("click",
+            function () {
+                div.classList.add(divActiveClass);
+            }
+        );
+        positionOnDOM.append(div);
+    }
 }
 
 
@@ -53,4 +72,4 @@ pageHeader.appendChild(difficultyDiv);
 
 
 
-difficultyButton.addEventListener('click', () => {playGame(difficultySelect, difficultyOption1, difficultyOption2, difficultyOption3)});
+difficultyButton.addEventListener('click', () => {activeChoice(difficultySelect, difficultyOption1, difficultyOption2, difficultyOption3)});

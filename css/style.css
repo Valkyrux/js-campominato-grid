@@ -17,6 +17,7 @@ html {
 
 header {
     padding: 10px 20px;
+    height: 80px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -29,27 +30,92 @@ header {
 }
 
 header .logo {
-    width: 45px;
+    width: 40px;
 }
 
 header h1 {
-    font-size: 1.7em;
+    font-size: 1.5em;
     margin-left: 10px;
-}
-
-@media screen and (max-width: 700px) {
-    header h1 {
-        display: none;
-    }
 }
 
 header select {
     padding: 2px 60px 2px 0;
     background-color: rgb(239, 239, 239);
-    margin-left: 10px;
+    margin: 0 0 5px 10px;
 }
 
 header button {
-   padding: 2px 30px;
-   margin-left: 10px;
+    padding: 2px 30px;
+    margin: 5px 0 0 10px;
+}    
+    
+@media screen and (max-width: 700px) {
+    header h1,
+    header label {
+        display: none;
+    }
+    
+        
+    header select {
+        padding: 2px;
+    }
 }
+    
+@media screen and (max-width: 300px) {
+    header div:last-child {
+        text-align: end;
+    }
+}
+/* main */
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+    height: calc(100% - 80px - 60px);
+}
+/* square-100 */
+main .game-table {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 600px; 
+} 
+
+div[class *= square] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;  
+    background-color: gainsboro;
+    border: 1px solid #242424;
+    transition: 0.2s;
+} 
+
+div[class *= square]:hover {
+    background-color: white;
+    box-shadow: 2px 2px #242424 inset;
+    cursor: pointer;
+} 
+
+.square-100 {
+    width: calc(100% / 10);
+}
+
+.square-81 {
+    width: calc(100% / 9);
+}
+
+.square-49 {
+    width: calc(100% / 7);
+}
+
+div[class *= square].active {
+    background-color: #2E4C6D;
+}
+
+div[class *= square].active:hover {
+    box-shadow: 0 0 transparent;
+}
+
