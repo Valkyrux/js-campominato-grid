@@ -17,7 +17,7 @@ html {
 
 header {
     padding: 10px 20px;
-    height: 80px;
+    height: 70px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -72,7 +72,7 @@ main {
     justify-content: center;
     align-items: center;
     overflow: auto;
-    height: calc(100% - 80px - 60px);
+    height: calc(100% - 70px - 60px);
 }
 /* square-100 */
 main .game-table {
@@ -99,6 +99,12 @@ div[class *= square]:hover {
     cursor: pointer;
 } 
 
+div[class *= square].stop-hover:hover {
+    background-color: gainsboro;
+    box-shadow: 0 0 transparent;
+    cursor: default;
+} 
+
 .square-100 {
     width: calc(100% / 10);
 }
@@ -113,9 +119,22 @@ div[class *= square]:hover {
 
 div[class *= square].active {
     background-color: #2E4C6D;
+    color: white;
 }
 
-div[class *= square].active:hover {
+div[class *= square].active.mine {
+    background-color: red;
+    color: white;
+}
+
+div[class *= square].stop-hover:hover {
     box-shadow: 0 0 transparent;
 }
 
+footer {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    height: 60px;
+    padding-left: 10px;
+}
