@@ -5,28 +5,41 @@ function activeChoice(choice, option1, option2, option3) {
     gameTable.classList.add("game-table");
     if(choice.value == option1.value){
         main.innerHTML = "";
-        getactivableDivOnDOM(100, gameTable, "square-100", "active");
+        getactivableDivOnDOM(100, gameTable, "square-100", "active", "mine", 20, "stop-hover");
     } else if(choice.value == option2.value){
         main.innerHTML = "";
-        getactivableDivOnDOM(81, gameTable, "square-81", "active");
+        getactivableDivOnDOM(81, gameTable, "square-81", "active", "mine", 20, "stop-hover");
     } else if(choice.value == option3.value){
         main.innerHTML = "";
-        getactivableDivOnDOM(49, gameTable, "square-49", "active");
+        getactivableDivOnDOM(49, gameTable, "square-49", "active", "mine", 20, "stop-hover");
     }
     main.append(gameTable);
 }
 // funzione che genera una griglia con elementi cliccabili
-function getactivableDivOnDOM(numberOfDiv, positionOnDOM, divClass, divActiveClass, mine, numberOfMines) {
+function getactivableDivOnDOM(numberOfDiv, positionOnDOM, divClass, divActiveClass, mine, numberOfMines, stopGameClass) {
     // array delle mine
     const mines = getRandArray(numberOfMines, 1, numberOfDiv);
     // costruisco i div assegnando le classi square e le classi mine in base all'array generato in precedenza
     for(let i = 0; i < numberOfDiv; i++) {
         const div = document.createElement("div");
         div.classList.add(divClass);
+        if(mines.includes(i + 1)) {
+            div.classList.add(mine);
+        };
         div.append(i + 1);
         div.addEventListener("click",
             function () {
                 div.classList.add(divActiveClass);
+                if(this.classList.contains(mine)) {
+                    const squares = document.querySelectorAll("div[class *= square]");
+                    for (let i = 0; i < numberOfDiv; i++){
+                        squares[i].classList.add(stopGameClass);
+                        if(squares[i].classList.contains(mine)){
+                            squares[i].classList.add(divActiveClass);
+                        }
+                        positionOnDOM.replaceChild(squares[i].cloneNode(true), squares[i]);
+                    }
+                }
             }
         );
         positionOnDOM.append(div);

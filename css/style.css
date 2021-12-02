@@ -99,6 +99,12 @@ div[class *= square]:hover {
     cursor: pointer;
 } 
 
+div[class *= square].stop-hover:hover {
+    background-color: gainsboro;
+    box-shadow: 0 0 transparent;
+    cursor: default;
+} 
+
 .square-100 {
     width: calc(100% / 10);
 }
@@ -116,7 +122,12 @@ div[class *= square].active {
     color: white;
 }
 
-div[class *= square].active:hover {
+div[class *= square].active.mine {
+    background-color: red;
+    color: white;
+}
+
+div[class *= square].stop-hover:hover {
     box-shadow: 0 0 transparent;
 }
 
