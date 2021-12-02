@@ -16,7 +16,10 @@ function activeChoice(choice, option1, option2, option3) {
     main.append(gameTable);
 }
 // funzione che genera una griglia con elementi cliccabili
-function getactivableDivOnDOM(numberOfDiv, positionOnDOM, divClass, divActiveClass) {
+function getactivableDivOnDOM(numberOfDiv, positionOnDOM, divClass, divActiveClass, mine, numberOfMines) {
+    // array delle mine
+    const mines = getRandArray(numberOfMines, 1, numberOfDiv);
+    // costruisco i div assegnando le classi square e le classi mine in base all'array generato in precedenza
     for(let i = 0; i < numberOfDiv; i++) {
         const div = document.createElement("div");
         div.classList.add(divClass);
@@ -29,8 +32,21 @@ function getactivableDivOnDOM(numberOfDiv, positionOnDOM, divClass, divActiveCla
         positionOnDOM.append(div);
     }
 }
-
-
+// funzione che genera un array di N numeri casuali contenuti tra min e max
+function getRandArray(numberOfElements, minValue, maxValue){
+    const array = [];
+    let i = 0;
+    if(numberOfElements <= (maxValue - minValue + 1)) {    
+        while(i < numberOfElements) {
+            const rand = Math.floor(Math.random()*(maxValue - minValue + 1) + minValue);
+            if(!(array.includes(rand))) {
+                array.push(rand);
+                i++;
+            }
+        }
+        return array;
+    }
+}
 // seleziono l'header
 const pageHeader = document.querySelector("header");
 // genero il titolo e lo metto in pagina
